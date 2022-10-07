@@ -1,5 +1,5 @@
 # TODO:
-[] Switch between light and dark theme
+[x] Switch between light and dark theme
 [] Get countries list and put them in UI
 [] Countries filter by search
 [] Countries filter by region

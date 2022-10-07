@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import {useEffect} from 'react';
-import { Link } from 'react-router-dom';
-import { IoMoon, IoMoonOutline } from 'react-icons/io5';
+import {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import {IoMoon, IoMoonOutline} from 'react-icons/io5';
 
-import { Container } from './Container';
+import {Container} from './Container';
+import {useDispatch, useSelector} from "react-redux";
+import {selectTheme} from "../store/theme/theme-selectors";
+import {changeTheme} from "../store/theme/theme-actions";
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -18,7 +21,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled(Link).attrs({
-  to: '/',
+    to: '/',
 })`
   color: var(--colors-text);
   font-size: var(--fs-sm);
@@ -35,27 +38,30 @@ const ModeSwitcher = styled.div`
 `;
 
 export const Header = () => {
-  const theme = 'light';
+    const dispatch = useDispatch();
+    const theme = useSelector(selectTheme);
 
-  useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-  }, [theme]);
+    useEffect(() => {
+        document.body.setAttribute('data-theme', theme);
+    }, [theme]);
 
-  return (
-    <HeaderEl>
-      <Container>
-        <Wrapper>
-          <Title>Where is the world?</Title>
-          <ModeSwitcher>
-            {theme === 'light' ? (
-              <IoMoonOutline size="14px" />
-            ) : (
-              <IoMoon size="14px" />
-            )}{' '}
-            <span style={{ marginLeft: '0.75rem' }}>{theme} Theme</span>
-          </ModeSwitcher>
-        </Wrapper>
-      </Container>
-    </HeaderEl>
-  );
+    return (
+        <HeaderEl>
+            <Container>
+                <Wrapper>
+                    <Title>Where is the world?</Title>
+                    <ModeSwitcher
+                        onClick={()=> dispatch(changeTheme(theme))}
+                    >
+                        {theme === 'light' ? (
+                            <IoMoonOutline size="14px"/>
+                        ) : (
+                            <IoMoon size="14px"/>
+                        )}{' '}
+                        <span style={{marginLeft: '0.75rem'}}>{theme} Theme</span>
+                    </ModeSwitcher>
+                </Wrapper>
+            </Container>
+        </HeaderEl>
+    );
 };
