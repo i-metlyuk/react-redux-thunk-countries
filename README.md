@@ -4,4 +4,4 @@
 [x] Countries filter by search
 [x] Countries filter by region
 [x] Get additional info for selected country in a separate page
-[] Get neighbors info for selected country
+[x] Get neighbors info for selected country
