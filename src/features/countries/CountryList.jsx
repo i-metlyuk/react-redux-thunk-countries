@@ -7,7 +7,7 @@ import {useCountries} from "./useCountries";
 const CountryList = () => {
     const navigate = useNavigate();
 
-    const [countries, {error, status, qty}] = useCountries();
+    const [countries, {error, status}] = useCountries();
 
     return (
         <>
